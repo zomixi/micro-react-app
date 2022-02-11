@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Button, ConfigProvider, DatePicker, Space } from "antd";
+import zhCN from "antd/lib/locale/zh_CN"; // 由于 antd 组件的默认文案是英文，所以需要修改为中文
+import moment from "moment";
+import "moment/locale/zh-cn";
+import React from "react";
+import "./styles/index.less";
 
-function App() {
+moment.locale("zh-cn");
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ConfigProvider locale={zhCN}>
+      <Space>
+        <Button>点我！</Button>
+        <DatePicker />
+      </Space>
+    </ConfigProvider>
   );
-}
+};
 
 export default App;
