@@ -42,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@mometa-mat/antd": "^0.0.4",
+    "@mometa/editor": "^0.0.30"
   }
 }
