@@ -1,27 +1,45 @@
 import AppLayout from "@/layout";
+import AppAbout from "@/views/About";
 import Forbidden from "@/views/Exception/Forbidden";
 import NotFound from "@/views/Exception/NotFound";
-import { RouteObject } from "react-router-dom";
-import AppAbout from "@/views/About";
 import AppHome from "@/views/Home";
+import { RouteObject } from "react-router-dom";
 
-const routes: RouteObject[] = [
+export type RouteType = RouteObject & {
+  title?: string;
+  hideInMenu?: boolean;
+  children?: RouteType[];
+};
+
+const routes: RouteType[] = [
   {
     path: "/",
+    element: <AppHome />,
+    title: "首页",
+  },
+  {
+    path: "/admin",
     element: <AppLayout />,
+    title: "控制台",
     children: [
-      { index: true, element: <AppHome /> },
       {
-        path: "/about",
+        index: true,
+        path: "/admin/about",
         element: <AppAbout />,
       },
       {
-        path: "/forbidden",
-        element: <Forbidden />,
+        path: "/admin/about",
+        element: <AppAbout />,
+        title: "About",
       },
-      { path: "*", element: <NotFound /> },
     ],
   },
+  {
+    path: "/admin/forbidden",
+    element: <Forbidden />,
+    title: "403",
+  },
+  { path: "*", element: <NotFound />, title: "404", hideInMenu: true },
 ];
 
 export default routes;
